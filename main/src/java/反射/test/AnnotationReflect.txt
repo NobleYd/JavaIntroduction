@@ -1,0 +1,82 @@
+	//类注解
+	public void test1(){
+		 Class aClass = TheClass.class;
+		 Annotation[] annotations = aClass.getAnnotations();
+
+		 for(Annotation annotation : annotations){
+		     if(annotation instanceof MyAnnotation){
+		         MyAnnotation myAnnotation = (MyAnnotation) annotation;
+		         System.out.println("name: " + myAnnotation.name());
+		         System.out.println("value: " + myAnnotation.value());
+		     }
+		 }
+	}
+	//方法注解
+	public void test2(){
+		Method method = ... //获取方法对象
+		Annotation[] annotations = method.getDeclaredAnnotations();
+
+		for(Annotation annotation : annotations){
+		    if(annotation instanceof MyAnnotation){
+		        MyAnnotation myAnnotation = (MyAnnotation) annotation;
+		        System.out.println("name: " + myAnnotation.name());
+		        System.out.println("value: " + myAnnotation.value());
+		    }
+		}
+	}
+	
+	//参数注解
+	public class TheClass {
+
+	  public static void doSomethingElse(@MyAnnotation(name="aName", value="aValue") String parameter){}
+
+	}
+
+	Method method = ... //获取方法对象
+	Annotation[][] parameterAnnotations = method.getParameterAnnotations();
+	Class[] parameterTypes = method.getParameterTypes();
+	
+	int i=0;
+	for(Annotation[] annotations : parameterAnnotations){
+	  Class parameterType = parameterTypes[i++];
+	
+	  for(Annotation annotation : annotations){
+	    if(annotation instanceof MyAnnotation){
+	        MyAnnotation myAnnotation = (MyAnnotation) annotation;
+	        System.out.println("param: " + parameterType.getName());
+	        System.out.println("name : " + myAnnotation.name());
+	        System.out.println("value: " + myAnnotation.value());
+	    }
+	  }
+	}
+	
+	//变量注解
+
+	public class TheClass {
+
+		@MyAnnotation(name="someName",  value = "Hello World")
+		public String myField = null;
+	
+	}
+	
+	Field field = ... //获取方法对象
+	Annotation[] annotations = field.getDeclaredAnnotations();
+	
+	for(Annotation annotation : annotations){
+	 if(annotation instanceof MyAnnotation){
+	 	MyAnnotation myAnnotation = (MyAnnotation) annotation;
+	 	System.out.println("name: " + myAnnotation.name());
+	 	System.out.println("value: " + myAnnotation.value());
+	 }
+	}	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

@@ -1,0 +1,160 @@
+<note name="<请忽略这个错误>" />
+
+<interface name="Iterable<T>">
+  <method name="Iterator<T> iterator();" />
+  <interface name="Collection<E> extends Iterable<E>">
+    <method name="int size();" />
+    <method name="boolean isEmpty();" />
+    <method name="boolean contains(Object o);" />
+    <method name="boolean add(E e);" />
+    <method name="boolean remove(Object o);" />
+    <method name="boolean containsAll(Collection<?> c);" />
+    <method name="boolean addAll(Collection<? extends E> c);" />
+    <method name="boolean removeAll(Collection<?> c);" />
+    <method name="boolean retainAll(Collection<?> c);" />
+    <method name="void clear();" />
+
+    <class name="AbstractCollection<E> implements Collection<E>" />
+
+    <interface name="List<E> extends Collection<E>">
+      <method name="boolean addAll(int index, Collection<? extends E> c);" />
+      <method name="E get(int index);" />
+      <method name="E set(int index, E element);" />
+      <method name="void add(int index, E element);" />
+      <method name="E remove(int index);" />
+      <method name="int indexOf(Object o);" />
+      <method name="int lastIndexOf(Object o);" />
+      <method name="ListIterator<E> listIterator();" />
+      <method name="ListIterator<E> listIterator(int index);" />
+      <method name="List<E> subList(int fromIndex, int toIndex);" />
+      <class name="AbstractList<E> extends AbstractCollection<E> implements List<E>">
+        <class name="ArrayList<E> extends AbstractList<E> implements List<E>" />
+        <class name="Vector<E> extends AbstractList<E> implements List<E>">
+          <class name="Stack<E> extends Vector<E>" />
+        </class>
+      </class>
+      <class name="AbstractSequentialList<E> extends AbstractList<E>">
+        <class name="LinkedList<E> extends AbstractSequentialList<E> implements List<E>, Deque<E>" />
+      </class>
+
+    </interface>
+
+    <interface name="Set<E> extends Collection<E>">
+      <!-- Set并没有引入新的方法 -->
+      <class name="AbstractSet<E> extends AbstractCollection<E> implements Set<E>">
+        <class name="HashSet<E> extends AbstractSet<E> implements Set<E>">
+          <class name="LinkedHashSet<E> extends HashSet<E> implements Set<E>" />
+        </class>
+      </class>
+      <interface name="SortedSet<E> extends Set<E>">
+        <method name="Comparator<? super E> comparator();" />
+        <method name="SortedSet<E> subSet(E fromElement, E toElement);" />
+        <method name="SortedSet<E> headSet(E toElement);" />
+        <method name="SortedSet<E> tailSet(E fromElement);" />
+        <method name="E first();" />
+        <method name="E last();" />
+
+        <interface name="NavigableSet<E> extends SortedSet<E>">
+          <method name="E lower(E e);" />
+          <method name="E floor(E e);" />
+          <method name="E ceiling(E e);" />
+          <method name="E higher(E e);" />
+          <method name="E pollFirst();" />
+          <method name="E pollLast();" />
+          <method name="NavigableSet<E> descendingSet();" />
+          <method name="Iterator<E> descendingIterator();" />
+          <method name="NavigableSet<E> subSet(E fromElement, boolean fromInclusive, E toElement, boolean toInclusive);" />
+          <method name="NavigableSet<E> headSet(E toElement, boolean inclusive);" />
+          <method name="NavigableSet<E> tailSet(E fromElement, boolean inclusive);" />
+
+          <class name="TreeSet<E> extends AbstractSet<E> implements NavigableSet<E>" />
+          <class name="ConcurrentSkipListSet<E> extends AbstractSet<E> implements NavigableSet<E>" />
+
+        </interface>
+      </interface>
+    </interface>
+    <interface name="Queue<E> extends Collection<E>">
+      <class name="abstract class AbstractQueue<E> extends AbstractCollection<E> implements Queue<E>" />
+
+      <method name="boolean offer(E e);" />
+      <method name="E remove();" />
+      <method name="E poll();" />
+      <method name="E element();" />
+      <method name="E peek();" />
+
+      <interface name="Deque<E> extends Queue<E>">
+        <method name="void addFirst(E e);" />
+        <method name="void addLast(E e);" />
+        <method name="boolean offerFirst(E e);" />
+        <method name="boolean offerLast(E e);" />
+        <method name="E removeFirst();" />
+        <method name="E removeLast();" />
+        <method name="E pollFirst();" />
+        <method name="E pollLast();" />
+        <method name="E getFirst();" />
+        <method name="E getLast();" />
+        <method name="E peekFirst();" />
+        <method name="E peekLast();" />
+        <method name="boolean removeFirstOccurrence(Object o);" />
+        <method name="boolean removeLastOccurrence(Object o);" />
+        <method name="void push(E e);" />
+        <method name="E pop();" />
+
+        <interface name="BlockingDeque<E> extends BlockingQueue<E>, Deque<E>">
+          <method name="void put(E e) throws InterruptedException;" />
+          <method name="boolean offer(E e, long timeout, TimeUnit unit) throws InterruptedException;" />
+          <method name="E take() throws InterruptedException;" />
+          <method name="E poll(long timeout, TimeUnit unit) throws InterruptedException;" />
+          <method name="int remainingCapacity();" />
+          <method name="int drainTo(Collection<? super E> c);" />
+          <method name="int drainTo(Collection<? super E> c, int maxElements);" />
+        </interface>
+
+        <class name="class LinkedList<E> extends AbstractSequentialList<E> implements List<E>, Deque<E>" />
+      </interface>
+      <interface name="BlockingQueue<E> extends Queue<E>">
+        <interface name="BlockingDeque<E> extends BlockingQueue<E>, Deque<E>" />
+        <interface name="TransferQueue<E> extends BlockingQueue<E>" />
+      </interface>
+    </interface>
+  </interface>
+</interface>
+<!-- Map部分没有列很多方法，只列出了Map接口的方法，子接口方法没列。 -->
+<!-- 注意Set的继承结构和Map很像，因为Set本身的实现就依赖于Map，所以不同特色的Map对应实现不同特色的Set。 -->
+<!-- 但是Map接口中多了个ConcurrentMap接口，对应有一个实现SkipList，这是一个快速查找算法。 -->
+<interface name="Map<K,V>">
+  <method name="int size();" />
+  <method name="boolean isEmpty();" />
+  <method name="boolean containsKey(Object key);" />
+  <method name="boolean containsValue(Object value);" />
+  <method name="V get(Object key);" />
+  <method name="V put(K key, V value);" />
+  <method name="V remove(Object key);" />
+  <method name="void putAll(Map<? extends K, ? extends V> m);" />
+  <method name="void clear();" />
+  <method name="Set<K> keySet();" />
+  <method name="Collection<V> values();" />
+  <method name="Set<Map.Entry<K, V>> entrySet();" />
+
+  <class name="AbstractMap<K,V> implements Map<K,V>" />
+  <class name="HashMap<K,V> extends AbstractMap<K,V> implements Map<K,V>">
+    <class name="class LinkedHashMap<K,V> extends HashMap<K,V> implements Map<K,V>" />
+  </class>
+  <class name="class Hashtable<K,V> extends Dictionary<K,V> implements Map<K,V>" />
+
+  <interface name="SortedMap<K,V> extends Map<K,V>">
+    <interface name="NavigableMap<K,V> extends SortedMap<K,V>">
+      <class name="TreeMap<K,V> extends AbstractMap<K,V> implements NavigableMap<K,V>" />
+
+      <interface name="ConcurrentNavigableMap<K,V> extends ConcurrentMap<K,V>, NavigableMap<K,V>">
+        <class name="ConcurrentSkipListMap<K,V> extends AbstractMap<K,V> implements ConcurrentNavigableMap<K,V>" />
+      </interface>
+    </interface>
+  </interface>
+  <interface name="ConcurrentMap<K, V> extends Map<K, V>">
+    <class name="ConcurrentHashMap<K,V> extends AbstractMap<K,V> implements ConcurrentMap<K,V>" />
+    <interface name="ConcurrentNavigableMap<K,V> extends ConcurrentMap<K,V>, NavigableMap<K,V>">
+      <class name="ConcurrentSkipListMap<K,V> extends AbstractMap<K,V> implements ConcurrentNavigableMap<K,V>" />
+    </interface>
+  </interface>
+</interface>
