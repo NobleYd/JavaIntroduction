@@ -1,0 +1,5 @@
+java内存机制：
+http://www.cnblogs.com/zhguang/p/3257367.html
+
+jvm监控和调优
+http://www.cnblogs.com/zhguang/p/Java-JVM-GC.html
