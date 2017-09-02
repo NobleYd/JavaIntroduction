@@ -1,5 +1,11 @@
-java内存机制：
+java内存机制 + gc：
 http://www.cnblogs.com/zhguang/p/3257367.html
+
+方法区，堆，虚拟机栈，本地方法栈，程序计数器。
+程序计数器是唯一一个没有定义OutOfMemory的内存区域。
+其他区域都有。
+
+gc使用分代gc，分为年轻代（Young），老年代（Old），永久代（Permanent，方法区）
 
 jvm监控和调优
 http://www.cnblogs.com/zhguang/p/Java-JVM-GC.html

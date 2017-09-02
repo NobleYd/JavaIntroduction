@@ -12,5 +12,5 @@ public interface DemoInterface {
 	// 默认方法不算哦
 	default void method3() {
 	}
-
+	
 }

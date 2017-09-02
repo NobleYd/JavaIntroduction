@@ -14,11 +14,11 @@ public class MyClassLoader extends ClassLoader {
 	}
 
 	public Class loadClass(String name) throws ClassNotFoundException {
-		if (!"com.app.bean.MyObject".equals(name))
+		if (!"反射.bean.MyObject".equals(name))
 			return super.loadClass(name);
 
 		try {
-			String url = "file:E:/Resources/eclipse workspace/JavaReflection/" + "bin/com/app/bean/MyObject.class";
+			String url = "file:E:/Resources/eclipse workspace/JavaReflection/" + "target/classes/反射/bean/MyObject.class";
 			URL myUrl = new URL(url);
 			URLConnection connection = myUrl.openConnection();
 			InputStream input = connection.getInputStream();
@@ -34,7 +34,7 @@ public class MyClassLoader extends ClassLoader {
 
 			byte[] classData = buffer.toByteArray();
 
-			return defineClass("com.app.bean.MyObject", classData, 0, classData.length);
+			return defineClass("反射.bean.MyObject", classData, 0, classData.length);
 
 		} catch (MalformedURLException e) {
 			e.printStackTrace();

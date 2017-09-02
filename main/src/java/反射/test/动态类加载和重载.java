@@ -45,14 +45,6 @@ import 反射.bean.ParentObject;
 	你在设计类重载功能的时候这是必要的条件。
  * 
  * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
  * </pre>
  */
 public class 动态类加载和重载 {
@@ -63,7 +55,7 @@ public class 动态类加载和重载 {
 		ClassLoader classLoader = 动态类加载和重载.class.getClassLoader();
 
 		try {
-			Class<?> cls = classLoader.loadClass("com.app.bean.MyObject");
+			Class<?> cls = classLoader.loadClass("反射.bean.MyObject");
 			System.out.println("name = " + cls.getName());
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -83,14 +75,14 @@ public class 动态类加载和重载 {
 		// true
 		// MyClassCloader类本身就是被currentClassLoader加载的。
 
-		Class fooCls = myClassLoader.loadClass("com.app.bean.Foo");
+		Class fooCls = myClassLoader.loadClass("反射.bean.Foo");
 		System.out.println(fooCls);
 
-		Class myObjectCls = myClassLoader.loadClass("com.app.bean.MyObject");
+		Class myObjectCls = myClassLoader.loadClass("反射.bean.MyObject");
 		System.out.println(myObjectCls);
 		MyObject object = (MyObject) myObjectCls.newInstance();
 		// 报错：
-		// com.app.bean.MyObject can not be cast to com.app.bean.MyObject
+		// 反射.bean.MyObject can not be cast to 反射.bean.MyObject
 		// 原因是赋值号左边已经引用了MyObject，所以MyObject的加载器应该是当前加载器。
 		// 而myObjectCls是MyClassLoader加载的，俩个版本不同。
 
@@ -104,7 +96,7 @@ public class 动态类加载和重载 {
 		System.out.println("currentClassLoader=" + currentClassLoader);
 		System.out.println("myClassLoader=" + myClassLoader);
 
-		Class myObjectCls = myClassLoader.loadClass("com.app.bean.MyObject");
+		Class myObjectCls = myClassLoader.loadClass("反射.bean.MyObject");
 		// 先使用Object接收(不强制转换)
 		Object object = myObjectCls.newInstance();
 		// 打印object的class
@@ -133,7 +125,7 @@ public class 动态类加载和重载 {
 
 		ClassLoader parentClassLoader = MyClassLoader.class.getClassLoader();
 		MyClassLoader classLoader = new MyClassLoader(parentClassLoader);
-		Class myObjectClass = classLoader.loadClass("com.app.bean.MyObject");
+		Class myObjectClass = classLoader.loadClass("反射.bean.MyObject");
 
 		Foo obj1 = (Foo) myObjectClass.newInstance();
 		ParentObject obj2 = (ParentObject) myObjectClass.newInstance();
@@ -142,7 +134,7 @@ public class 动态类加载和重载 {
 
 		// create new class loader so classes can be reloaded.
 		classLoader = new MyClassLoader(parentClassLoader);
-		myObjectClass = classLoader.loadClass("com.app.bean.MyObject");
+		myObjectClass = classLoader.loadClass("反射.bean.MyObject");
 
 		obj1 = (Foo) myObjectClass.newInstance();
 		obj2 = (ParentObject) myObjectClass.newInstance();
