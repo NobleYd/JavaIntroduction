@@ -5,7 +5,7 @@ public class Child extends Parent {
 	// 重写父类方法
 	@Override
 	public void m1() {
-
+		System.out.println("Child.m1()");
 	}
 
 	// 父类的私有方法无法被重写
@@ -22,7 +22,8 @@ public class Child extends Parent {
 	// 入口大，内部小就不可以了，入口大准入了，结果进去发现不能进？尴尬了。
 	@Override
 	public void m3() {
-		super.m3();
+		super.m3();// 子类中想要调用父类中被重写的方法则需要使用super关键字。
+		System.out.println("Child.m3()");
 	}
 
 	// final 方法无法重写
@@ -35,7 +36,7 @@ public class Child extends Parent {
 	// 注意子类无法访问到父类私有方法
 	// 因此这个不算重写
 	private final void m6() {
-		
+		System.out.println("Child.m6()");
 	}
 
 }
