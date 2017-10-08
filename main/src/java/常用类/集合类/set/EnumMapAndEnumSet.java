@@ -1,4 +1,4 @@
-package 集合类型.list;
+package 常用类.集合类.set;
 
 import java.util.EnumMap;
 import java.util.EnumSet;

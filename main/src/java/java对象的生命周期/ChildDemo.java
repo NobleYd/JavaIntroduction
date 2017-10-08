@@ -28,9 +28,20 @@ public class ChildDemo extends ParentDemo {
 
 	private Demo demo2 = new Demo("非静态 子类 成员变量2 初始化");
 
+	
+	public static String staticString = "static string in child demo";
 	public ChildDemo() {
 		super();
 		System.out.println("子类 构造函数 执行");
 	}
 
+	{
+		System.out.println("非静态 子类 代码块3(代码位置在构造函数之后) 执行");
+	}
+	
+	public static void main(String[] args) {
+		System.out.println("ChildDemo.main 的第一句代码。");
+		
+	}
+	
 }

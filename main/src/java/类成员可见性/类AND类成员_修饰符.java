@@ -1,7 +1,7 @@
 package 类成员可见性;
 
 //class: public, abstract, final(final类不允许被继承)
-public abstract class 成员修饰符 {
+public abstract class 类AND类成员_修饰符 {
 
 	// public,protected,private,默认
 	// abstract, static, final(final类型必须初始化，final方法不允许重写)

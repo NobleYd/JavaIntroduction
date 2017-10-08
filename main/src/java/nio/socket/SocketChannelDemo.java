@@ -17,7 +17,6 @@ public class SocketChannelDemo {
 		ByteBuffer buf = ByteBuffer.allocate(512);
 
 		while (scanner.hasNext()) {
-			buf.clear();
 			String cmd = scanner.nextLine();
 			if ("end".equals(cmd)) {
 				System.out.println("退出...");
@@ -32,10 +31,10 @@ public class SocketChannelDemo {
 					System.out.println("写出" + writeNumber + "字节...");
 				}
 				System.out.println("写出结束...");
-
+				buf.clear();
 			}
 		}
-
+		scanner.close();
 	}
 
 }

@@ -2,6 +2,8 @@ package java对象的生命周期;
 
 public class ParentDemo {
 
+	
+	public static String staticStringInParent = "static string in parent";
 	private Demo demo = new Demo("父普通成员变量初始化");
 	private static Demo staticDemo = new Demo("父静态成员变量初始化");
 

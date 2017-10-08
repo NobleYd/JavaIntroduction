@@ -1,4 +1,4 @@
-package 类成员可见性;
+package 类成员可见性.demo;
 
 public class 私有变量的可见性 {
 

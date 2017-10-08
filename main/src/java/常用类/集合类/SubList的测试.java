@@ -1,4 +1,4 @@
-package 集合类型.list;
+package 常用类.集合类;
 
 import java.util.ArrayList;
 import java.util.List;

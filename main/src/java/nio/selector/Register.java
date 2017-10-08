@@ -73,9 +73,9 @@ public class Register {
 		while (keyIterator.hasNext()) {
 			SelectionKey key = keyIterator.next();
 			if (key.isAcceptable()) {
-				// a connection was accepted by a ServerSocketChannel.
+				// This key's channel is ready to accept a new socket connection.
 			} else if (key.isConnectable()) {
-				// a connection was established with a remote server.
+				// This key's channel has either finished, or failed to finish, its socket-connection operation.
 			} else if (key.isReadable()) {
 				// a channel is ready for reading
 			} else if (key.isWritable()) {
@@ -86,8 +86,7 @@ public class Register {
 
 		// wakeUp()
 		// 某个线程调用select()方法后阻塞了，即使没有通道已经就绪，也有办法让其从select()方法返回。只要让其它线程在第一个线程调用select()方法的那个对象上调用Selector.wakeup()方法即可。阻塞在select()方法上的线程会立马返回。
-		// 如果有其它线程调用了wakeup()方法，但当前没有线程阻塞在select()方法上，下个调用select()方法的线程会立即“醒来（wake
-		// up）”。
+		// 如果有其它线程调用了wakeup()方法，但当前没有线程阻塞在select()方法上，下个调用select()方法的线程会立即“醒来（wake up）”。
 
 		// close
 		// 用完Selector后调用其close()方法会关闭该Selector，且使注册到该Selector上的所有SelectionKey实例无效。通道本身并不会关闭。
